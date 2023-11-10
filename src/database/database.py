@@ -28,7 +28,18 @@ class DataBase():
         except mysql.connector.Error as error:
             print(f' Connection Failed! ,"{error}"')
 
-    def select(self, table_name):
+    def select_tables(self):
+        try:
+            query = "SHOW TABLES"
+            if self._cursor is not None:
+                self._cursor.execute(query)
+                tables = self._cursor.fetchall()
+                return tables
+        except mysql.connector.Error as mysql_error:
+            print(f"Error:  {mysql_error}")
+    
+
+    def select_content(self, table_name):
         try:
             # can be modified later to prevent sql injection attack
             query = f"SELECT * FROM {table_name}"
@@ -40,6 +51,8 @@ class DataBase():
         except mysql.connector.Error as mysql_error:
             print(f"Error:  {mysql_error}")
             return False
+    
+    # used for fill up database with demo data
     def fill_up(self):
         try:
              # Iterate over the 8 tables

@@ -17,9 +17,13 @@ if __name__ == "__main__":
     database = db.DataBase(host, username, password, database)
     # - connects to the db
     database.connect()
-    """ result = database.select('Sample1')
-    print(result) """
-    database.fill_up()
+    #result = database.select_content('Sample1')
+    #print(result)
+
+    tables = database.select_tables()
+    for table in tables:
+        print(table[0])
+
     # - disconnects from db
     database.disconnect()
 else:
