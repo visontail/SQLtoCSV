@@ -1,0 +1,8 @@
+# config file
+.env
+# virtual enviroment
+.venv
+# local settings
+.DS_Store
+# python 
+/Users/visontaileo/Developer/Anteus-test-task/SQLtoCSV/__pycache__
