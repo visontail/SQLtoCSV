@@ -4,6 +4,10 @@ import database.database as db
 import os
 from dotenv import load_dotenv
 
+import wx
+import wx.grid
+from gui.app import DatabaseViewer
+
 load_dotenv()
 
 # database config
@@ -23,6 +27,13 @@ if __name__ == "__main__":
     tables = database.select_tables()
     for table in tables:
         print(table[0])
+
+    app = wx.App(False)
+
+    # Instantiate the DatabaseViewer class from app.py
+    frame = DatabaseViewer(None, "Database Viewer", tables)
+
+    app.MainLoop()
 
     # - disconnects from db
     database.disconnect()
