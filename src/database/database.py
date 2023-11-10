@@ -107,7 +107,6 @@ class DataBase():
                 insert_query = f"INSERT INTO `{table_name}` (`Name`, `Nickname`, `Position(s)`) VALUES (%s, %s, %s)"
                 self._cursor.executemany(insert_query, players_data_for_table)
                 self._connection.commit()
-
             print(f"Inserted demo data into {table_name}")
 
         except mysql.connector.Error as mysql_error:

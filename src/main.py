@@ -19,7 +19,7 @@ if __name__ == "__main__":
     database.connect()
     #result = database.select_content('Sample1')
     #print(result)
-
+    # print out tables
     tables = database.select_tables()
     for table in tables:
         print(table[0])
