@@ -15,9 +15,12 @@ database = os.getenv('DATABASE')
 if __name__ == "__main__":  
     # - create database connection object
     database = db.DataBase(host, username, password, database)
-    # - connects to the database
+    # - connects to the db
     database.connect()
+    """ result = database.select('Sample1')
+    print(result) """
+    database.fill_up()
+    # - disconnects from db
+    database.disconnect()
 else:
     print("Something went wrong. Try again later!")
-
-    
