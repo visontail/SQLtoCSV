@@ -23,13 +23,29 @@ class TableViewer(wx.Frame):
             # align center
             self.grid.SetCellAlignment(i, 0, wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
         # grid arrangement
+        grid_sizer = wx.BoxSizer(wx.VERTICAL)
+        grid_sizer.Add(self.grid, 1, wx.EXPAND)
+        # add save button
+        save_button = wx.Button(self.panel, label="Save")
+        save_button.Bind(wx.EVT_BUTTON, self.on_save)
+        button_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        button_sizer.AddStretchSpacer()
+        button_sizer.Add(save_button, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        
+        # window arrengement
         sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(self.grid, 1, wx.EXPAND)
+        sizer.Add(grid_sizer, 1, wx.EXPAND)
+        sizer.Add(button_sizer, 0, wx.EXPAND)
         self.panel.SetSizer(sizer)
-        # TODO - onclose event megcsinálása
+        # TODO - onclose event
         self.Bind(wx.EVT_CLOSE, self.on_close)
         self.Show(True)
 
+    def on_save(self, event):
+        # TODO - onsave event megcsinálni
+        pass
+
     def on_close(self, event):
+        # TODO - onclose event megcsinálni
         self.db.disconnect()
         self.Destroy()

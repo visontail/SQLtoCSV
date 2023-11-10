@@ -31,7 +31,7 @@ if __name__ == "__main__":
     app = wx.App(False)
 
     # instantiate the TableViewer class from app.py
-    frame = TableViewer(None, f"These are the Tables from Database", tables)
+    frame = TableViewer(None, "These are the Tables from Database", tables)
 
     app.MainLoop()
 
