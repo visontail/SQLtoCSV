@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 import wx
 import wx.grid
-from gui.app import DatabaseViewer
+from gui.app import TableViewer
 
 load_dotenv()
 
@@ -14,12 +14,12 @@ load_dotenv()
 host = os.getenv('HOST')
 username = os.getenv('USERNAME')
 password = os.getenv('PASSWORD')
-database = os.getenv('DATABASE')
+database_name = os.getenv('DATABASE')
 
 if __name__ == "__main__":  
-    # - create database connection object
-    database = db.DataBase(host, username, password, database)
-    # - connects to the db
+    # create database connection object
+    database = db.DataBase(host, username, password, database_name)
+    # connects to the db
     database.connect()
     #result = database.select_content('Sample1')
     #print(result)
@@ -30,12 +30,12 @@ if __name__ == "__main__":
 
     app = wx.App(False)
 
-    # Instantiate the DatabaseViewer class from app.py
-    frame = DatabaseViewer(None, "Database Viewer", tables)
+    # instantiate the TableViewer class from app.py
+    frame = TableViewer(None, f"These are the Tables from Database", tables)
 
     app.MainLoop()
 
-    # - disconnects from db
+    # disconnects from db
     database.disconnect()
 else:
     print("Something went wrong. Try again later!")
