@@ -1,5 +1,5 @@
 # importing 'database' py file as 'db'
-import database as db
+import database.database as db
 # importing / using dotenv for storing login data locally
 import os
 from dotenv import load_dotenv
