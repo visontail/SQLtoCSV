@@ -37,7 +37,6 @@ class TableViewer(wx.Frame):
         sizer.Add(grid_sizer, 1, wx.EXPAND)
         sizer.Add(button_sizer, 0, wx.EXPAND)
         self.panel.SetSizer(sizer)
-        # TODO - onclose event
         self.Bind(wx.EVT_CLOSE, self.on_close)
         self.Show(True)
 
@@ -46,6 +45,4 @@ class TableViewer(wx.Frame):
         pass
 
     def on_close(self, event):
-        # TODO - onclose event megcsinálni
-        self.db.disconnect()
         self.Destroy()

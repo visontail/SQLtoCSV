@@ -25,8 +25,8 @@ if __name__ == "__main__":
     #print(result)
     # print out tables
     tables = database.select_tables()
-    for table in tables:
-        print(table[0])
+    #for table in tables:
+    #    print(table[0])
 
     app = wx.App(False)
 
