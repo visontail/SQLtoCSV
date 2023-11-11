@@ -4,5 +4,7 @@
 .venv
 # local settings
 .DS_Store
-# python 
+# python __pycache__
 /Users/visontaileo/Developer/Anteus-test-task/SQLtoCSV/__pycache__
+/Users/visontaileo/Developer/Anteus-test-task/SQLtoCSV/src/gui/__pycache__
+/Users/visontaileo/Developer/Anteus-test-task/SQLtoCSV/src/database/__pycache__
