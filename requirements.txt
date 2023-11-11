@@ -1,0 +1,7 @@
+mysql-connector-python==8.2.0
+numpy==1.26.1
+Pillow==10.1.0
+protobuf==4.21.12
+python-dotenv==1.0.0
+six==1.16.0
+wxPython==4.2.1
