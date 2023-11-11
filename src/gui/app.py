@@ -5,7 +5,15 @@ import csv
 
 
 class TableViewer(wx.Frame):
+    """Handles wxPython application to view and save SQL database tables."""
     def __init__(self, parent, title, database):
+        """Initialize the DatabaseViewer window.
+
+        Args:
+            parent (wx.Window): The parent window.
+            title (str): The title of the window.
+            database (object): A Database connection object
+        """
         super(TableViewer, self).__init__(parent, title=title, size=(400, 400))
         self.panel = wx.Panel(self)
         # pass database to self.db
@@ -48,8 +56,12 @@ class TableViewer(wx.Frame):
         self.Bind(wx.EVT_CLOSE, self.on_close)
         self.Show(True)
     
-    # Function to handle Save button event
     def on_save(self, event):
+        """Function to save selected tables as CSV files when clicked to 'Save' button
+        
+        Args:
+            event: The wxPython event triggering the function.
+        """
         # goes through the grid, checks if box is checked
         selected_tables = [i for i in range(self.grid.GetNumberRows()) if self.grid.GetCellValue(i, 0) == '1']
         # if no tables was selected gives a warning
@@ -80,8 +92,11 @@ class TableViewer(wx.Frame):
         for i in range(self.grid.GetNumberRows()):
             self.grid.SetCellValue(i, 0, '0')
     
-    # Function to handle on close event
     def on_close(self, event):
+        """Close the application's window when clicked on close.
+        Args:
+            event: The wxPython event triggering the function.
+        """
         self.db.disconnect()
         wx.MessageBox("Application closing down", "Goodbye", wx.OK | wx.ICON_INFORMATION)
         self.Destroy()

@@ -23,7 +23,6 @@ if __name__ == "__main__":
     app = wx.App(False)
     # instantiate the TableViewer class from app.py
     frame = TableViewer(None, "Database Tables", database)
-
     app.MainLoop()
     database.disconnect()
 else:

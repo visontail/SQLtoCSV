@@ -2,6 +2,7 @@ import mysql.connector
 
 # Class for Database
 class DataBase():
+    """Handling database connection and queries"""
     def __init__(self, host: int, username: str, password, database):
         self._host = host
         self._username = username
@@ -10,8 +11,8 @@ class DataBase():
         self._connection = None
         self._cursor = None
     
-    # Function for establishing database connection
     def connect(self):
+        """Function for establishing database connection by creating a database connection object"""
         try:
             self._connection = mysql.connector.connect(
                 host = self._host,
@@ -27,8 +28,8 @@ class DataBase():
         except mysql.connector.Error as error:
             print(f' Connection Failed! ,"{error}"')
     
-    # Function for getting all the table
     def select_tables(self):
+        """Function for getting all tables from database"""
         try:
             query = "SHOW TABLES"
             if self._cursor is not None:
@@ -38,8 +39,11 @@ class DataBase():
         except mysql.connector.Error as mysql_error:
             print(f"Error:  {mysql_error}")
     
-    # Function for getting the content of the given table
     def select_content(self, table_name):
+        """Function for getting the content of the given table
+        Args:
+            table_name (string): One of the database's table names
+        """
         try:
             # can be modified later to prevent sql injection attack
             query = f"SELECT * FROM {table_name}"
@@ -52,14 +56,14 @@ class DataBase():
             print(f"Error:  {mysql_error}")
             return False
     
-    # Function for disconnecting from database
     def disconnect(self):
+        """Function for disconnecting from database"""
         if self._cursor is not None and self._connection.is_connected():
             self._cursor.close()
             self._connection.close()
 
-    # Function used for fill up database with demo data
     def fill_up(self):
+        """Function used for fill up database with demo data"""
         try:
              # Iterate over the 8 tables
             for i in range(1, 9):
