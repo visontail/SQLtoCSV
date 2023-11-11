@@ -19,8 +19,6 @@ database_name = os.getenv('DATABASE')
 if __name__ == "__main__":  
     # create database connection object
     database = db.DataBase(host, username, password, database_name)
-    # connect to database
-    database.connect()
     # creating an instance with no redirecting of output or error
     app = wx.App(False)
     # instantiate the TableViewer class from app.py
