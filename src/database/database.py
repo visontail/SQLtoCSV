@@ -1,6 +1,5 @@
 import mysql.connector
 
-# Class for Database
 class DataBase():
     """Handling database connection and queries"""
     def __init__(self, host: int, username: str, password, database):
@@ -34,6 +33,7 @@ class DataBase():
             query = "SHOW TABLES"
             if self._cursor is not None:
                 self._cursor.execute(query)
+                # fetch all table's name and return it
                 tables = self._cursor.fetchall()
                 return tables
         except mysql.connector.Error as mysql_error:

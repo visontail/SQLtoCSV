@@ -3,7 +3,6 @@ import wx
 import wx.grid
 import csv
 
-
 class TableViewer(wx.Frame):
     """Handles wxPython application to view and save SQL database tables."""
     def __init__(self, parent, title, database):
