@@ -1,13 +1,15 @@
 import wx
-
 import wx.grid
+import csv
 
 
 class TableViewer(wx.Frame):
-    def __init__(self, parent, title, tables):
-        super(TableViewer, self).__init__(parent, title=title, size=(400, 300))
+    def __init__(self, parent, title, database):
+        super(TableViewer, self).__init__(parent, title=title, size=(400, 400))
         self.panel = wx.Panel(self)
-        
+        self.db = database
+        # print out tables
+        tables = self.db.select_tables()
         # create table
         self.grid = wx.grid.Grid(self.panel, -1)
         self.grid.CreateGrid(len(tables), 2)
@@ -41,8 +43,21 @@ class TableViewer(wx.Frame):
         self.Show(True)
 
     def on_save(self, event):
-        # TODO - onsave event megcsinálni
-        pass
+        # goes through the grid
+        for i in range(self.grid.GetNumberRows()):
+            # checks if box is checked
+            if self.grid.GetCellValue(i, 0) == '1':
+                # gets table name from grid
+                table_name = self.grid.GetCellValue(i, 1)
+                # gets content of the table
+                content = self.db.select_content(table_name)
+                # if there's content writes it in the csv file
+                if content:
+                    # file name is the table's name + .csv
+                    file_name = f"{table_name}.csv"
+                    with open(file_name, 'w', newline='') as csv_file:
+                        csv_writer = csv.writer(csv_file)
+                        csv_writer.writerows(content)
 
     def on_close(self, event):
         self.Destroy()

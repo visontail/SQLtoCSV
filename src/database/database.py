@@ -1,4 +1,3 @@
-# Importing module
 import mysql.connector
 
 # Class for Database
@@ -11,7 +10,7 @@ class DataBase():
         self._connection = None
         self._cursor = None
     
-    # Function to establish database connection
+    # Function for establishing database connection
     def connect(self):
         try:
             self._connection = mysql.connector.connect(
@@ -27,7 +26,8 @@ class DataBase():
         # print out error if connection failed
         except mysql.connector.Error as error:
             print(f' Connection Failed! ,"{error}"')
-
+    
+    # Function for getting all the table
     def select_tables(self):
         try:
             query = "SHOW TABLES"
@@ -38,7 +38,7 @@ class DataBase():
         except mysql.connector.Error as mysql_error:
             print(f"Error:  {mysql_error}")
     
-
+    # Function for getting the content of the given table
     def select_content(self, table_name):
         try:
             # can be modified later to prevent sql injection attack
@@ -52,7 +52,13 @@ class DataBase():
             print(f"Error:  {mysql_error}")
             return False
     
-    # used for fill up database with demo data
+    # Function for disconnecting from database
+    def disconnect(self):
+        if self._cursor is not None and self._connection.is_connected():
+            self._cursor.close()
+            self._connection.close()
+
+    # Function used for fill up database with demo data
     def fill_up(self):
         try:
              # Iterate over the 8 tables
@@ -107,12 +113,5 @@ class DataBase():
                 self._cursor.executemany(insert_query, players_data_for_table)
                 self._connection.commit()
             print(f"Inserted demo data into {table_name}")
-
         except mysql.connector.Error as mysql_error:
             print(f"Error: {mysql_error}")
-
-    # Function for disconnecting from database
-    def disconnect(self):
-        if self._cursor is not None and self._connection.is_connected():
-            self._cursor.close()
-            self._connection.close()

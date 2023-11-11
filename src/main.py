@@ -19,23 +19,14 @@ database_name = os.getenv('DATABASE')
 if __name__ == "__main__":  
     # create database connection object
     database = db.DataBase(host, username, password, database_name)
-    # connects to the db
+    # connect to database
     database.connect()
-    #result = database.select_content('Sample1')
-    #print(result)
-    # print out tables
-    tables = database.select_tables()
-    #for table in tables:
-    #    print(table[0])
-
+    # creating an instance with no redirecting of output or error
     app = wx.App(False)
-
     # instantiate the TableViewer class from app.py
-    frame = TableViewer(None, "These are the Tables from Database", tables)
+    frame = TableViewer(None, "Database Tables", database)
 
     app.MainLoop()
-
-    # disconnects from db
     database.disconnect()
 else:
     print("Something went wrong. Try again later!")
