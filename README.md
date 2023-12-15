@@ -2,6 +2,7 @@
 ## Description
 
 The application's main feature is to save the content of tables from a MySQL Database using a wxPython GUI and export it to a CSV file.
+*(job application task)*
 
 ## Installation
 
